@@ -324,7 +324,9 @@
           <p class="section-lead">I'd love to hear about your pets, your travel plans and the care you're looking for. Please complete the form below, and I'll be in touch shortly.</p>
         </div>
         <div class="contact-grid">
-          <form class="enquiry" id="enquiry-form" novalidate>
+          <form class="enquiry" id="enquiry-form" name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="subject" value="New enquiry from cloverpetsitting.com">
+            <p class="hp-field" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <h3>Tell Me About Your Booking</h3>
             <div class="form-grid">
               <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
@@ -334,8 +336,13 @@
               <div class="field full"><label for="f-details">Your Pets &amp; Care Requirements</label><textarea id="f-details" name="details" required placeholder="Please tell me about your pets, routines and care needs…"></textarea></div>
             </div>
             <button class="btn btn-primary" type="submit">Send my enquiry 🍀</button>
-            <p class="form-hint">The form opens your email app with everything pre-filled — nothing is sent until you press <em>Send</em> there.</p>
+            <p class="form-error" id="enquiry-error" role="alert" hidden>Sorry, your enquiry couldn't be sent. Please try again, or email me directly at <a href="mailto:cloverpetsit@gmail.com">cloverpetsit@gmail.com</a></p>
+            <p class="form-hint">Your enquiry comes straight to my inbox, and I'll reply to you by email.</p>
           </form>
+          <div class="enquiry enquiry-thanks" id="enquiry-thanks" role="status" tabindex="-1" hidden>
+            <h3>Thank you! 🍀</h3>
+            <p>Your enquiry has been sent. I'll be in touch shortly.</p>
+          </div>
           <p class="direct-email">Prefer to email me directly?<br>You can reach me at <a href="mailto:cloverpetsit@gmail.com">cloverpetsit@gmail.com</a></p>
         </div>
       </div>

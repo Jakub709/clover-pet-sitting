@@ -90,32 +90,47 @@
     });
   }
 
-  /* ---- Enquiry form → opens the visitor's email app pre-filled ---- */
+  /* ---- Enquiry form → sent to Netlify Forms, thank-you shown in place ---- */
   var form = document.getElementById('enquiry-form');
   if (form) {
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errorMsg = document.getElementById('enquiry-error');
+    var thanks = document.getElementById('enquiry-thanks');
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
 
+      // Readable subject line for the notification email in Monika's inbox
       var v = function (id) { return (document.getElementById(id).value || '').trim(); };
-      var name = v('f-name'), email = v('f-email'), details = v('f-details');
-      var dates = v('f-dates') || 'to be confirmed';
-      var loc = v('f-location') || 'to be confirmed';
+      var dates = v('f-dates');
+      form.elements.subject.value = 'New enquiry: ' + v('f-name') + (dates ? ' — ' + dates : '');
 
-      var subject = 'Pet & house sitting enquiry — ' + dates;
-      var body =
-        'Hello Monika,\n\n' +
-        'I would like to enquire about pet and house sitting.\n\n' +
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Arrival and departure: ' + dates + '\n' +
-        'Location: ' + loc + '\n\n' +
-        'Pets & care requirements:\n' + details + '\n\n' +
-        'Thank you!\n' + name;
+      var data = new FormData(form);
+      data.set('form-name', form.getAttribute('name'));
 
-      window.location.href = 'mailto:cloverpetsit@gmail.com' +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
+      errorMsg.hidden = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      })
+        .then(function (res) {
+          // Netlify answers non-2xx when the form isn't registered — don't claim success then
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          form.hidden = true;
+          thanks.hidden = false;
+          thanks.focus();
+        })
+        .catch(function () {
+          errorMsg.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = btnLabel;
+        });
     });
   }
 })();
