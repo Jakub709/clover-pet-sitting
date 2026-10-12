@@ -1,10 +1,18 @@
-# Netlify configuration for cloverpetsitting.com
+# Netlify configuration for cloverpetsit.com
 # Static site, no build step needed — deploy this whole folder as-is.
 
-# Redirect the .co.uk domain to the primary .com domain
+# Older domains (bought at Fasthosts) → primary domain cloverpetsit.com.
+# These rules take effect once their DNS points to Netlify and they are
+# added under Domain management.
+[[redirects]]
+  from = "https://cloverpetsitting.com/*"
+  to = "https://cloverpetsit.com/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "https://cloverpetsitting.co.uk/*"
-  to = "https://cloverpetsitting.com/:splat"
+  to = "https://cloverpetsit.com/:splat"
   status = 301
   force = true
 

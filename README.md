@@ -1,6 +1,8 @@
 # Clover Pet & House Sitting — web pro Moniku
 
-Statický web (čisté HTML/CSS/JS, žádný build) pro **cloverpetsitting.com** / **cloverpetsitting.co.uk**.
+Statický web (čisté HTML/CSS/JS, žádný build). Běží na Netlify na **cloverpetsit.com**
+(doména koupená přes Netlify, Netlify DNS). Starší domény cloverpetsitting.com / .co.uk
+(Fasthosts) zatím na Netlify nevedou — viz TODO.
 Oficiální název: **Clover Pet & House Sitting** (Monika Janalikova, Frome, Somerset).
 
 ## Struktura
@@ -39,6 +41,9 @@ Lokální náhled: `npx serve . -l 5260` (nebo launch config **moni-web**).
 - Barvy: krémová + jetelová zelená + zlatá „somerset day" (dle reálné byTilly
   palety) + meruňková. Mobile-first, SEO bez veřejného telefonu a úplné adresy.
 - Recenze bez zmínky platformy; jedna z nich je použita jen jako textový citát.
+- Kontaktní formulář přes **Netlify Forms** (formulář `enquiry`, AJAX, honeypot `bot-field`).
+  Monika si v Netlify nastavuje e-mailová upozornění (Forms → Submission notifications);
+  pole `email` nastaví Reply-To na klienta. Návod: `../Navod-kontaktni-formular.pdf`.
 
 ## TODO před spuštěním
 
@@ -46,8 +51,12 @@ Lokální náhled: `npx serve . -l 5260` (nebo launch config **moni-web**).
    malé ořezy v `assets/img/gallery/`.
 2. **Logo redesign** — návrh `assets/previews/logo-concept-v1.png` je pouze ke
    schválení a zatím není nasazený.
-3. **Hosting** — Netlify (zdarma, HTTPS, obě domény; .co.uk redirect
-   na .com). Po nasazení Google Search Console + Google Business Profile.
+3. **Starší domény** — cloverpetsitting.com a .co.uk mají DNS u Fasthosts
+   (ns*.livedns.co.uk) a míří na jejich parkovací server. Pokud je Monika chce
+   zachovat: přidat je v Netlify (Domain management) a u Fasthosts nasměrovat DNS
+   na Netlify; přesměrování na cloverpetsit.com už je v `netlify.toml`.
+4. **Nasazování** — Monika nahrává ručně (Deploys → přetáhnout složku), Netlify
+   není napojené na GitHub. Po nasazení Google Search Console + Business Profile.
 
 ## Poznámky k údajům na webu
 

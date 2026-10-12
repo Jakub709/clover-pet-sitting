@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cloverpetsitting.com/sitemap.xml
+Sitemap: https://cloverpetsit.com/sitemap.xml

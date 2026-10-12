@@ -22,8 +22,8 @@ Based in Frome, Somerset. Covers Frome, Trowbridge, Westbury, Warminster, Salisb
 
 ## Pages
 
-- [Homepage](https://cloverpetsitting.com/): introduction, about Monika, service description, client reviews, photo gallery, live availability calendar, service area and contact/enquiry form
-- [Terms & Conditions](https://cloverpetsitting.com/terms): full booking terms, cancellation and refund policy, pricing structure, liability, safety and property-care details
+- [Homepage](https://cloverpetsit.com/): introduction, about Monika, service description, client reviews, photo gallery, live availability calendar, service area and contact/enquiry form
+- [Terms & Conditions](https://cloverpetsit.com/terms): full booking terms, cancellation and refund policy, pricing structure, liability, safety and property-care details
 
 ## Contact
 
